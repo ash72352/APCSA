@@ -14,7 +14,10 @@ public class Lab01a
    {
       //instantiate a StarsAndStripes object
       StarsAndStripes stars = new StarsAndStripes();
+      
+      stars.printASmallBox();
       stars.printTwoBlankLines();
+      stars.printABigBox();
       //call the methods needed to make the patterns on the word document
    }
 }
