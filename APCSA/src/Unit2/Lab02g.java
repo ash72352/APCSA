@@ -6,18 +6,16 @@ package Unit2;
 //Class -
 //Lab  -
 
-public class Lab02d
+public class Lab02g
 {
 	public static void main( String[] args )
  {
-		Cube test = new Cube();
-	 	test.setSide(112);
-	 	test.calculateSurfaceArea();
+		Fahrenheit test = new Fahrenheit();
+		test.setFahrenheit(78.9);
 	 	test.print();
 
 	 	//add more test cases
-	 	test.setSide(42);
-	 	test.calculateSurfaceArea();
+	 	test.setFahrenheit(121);
 	 	test.print();
 	 	
 	 	

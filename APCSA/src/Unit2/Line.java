@@ -8,22 +8,28 @@ package Unit2;
 
 public class Line
 {
-	private int xOne,yOne, xTwo, yTwo;
+	private double xOne,yOne, xTwo, yTwo;
 	private double slope;
 
-	public Line(int x1, int y1, int x2, int y2)
+	public Line(double x1, double y1, double x2, double y2)
 	{
-
+		xOne = x1;
+		yOne = y1;
+		xTwo = x2;
+		yTwo = y2;
 
 
 
 
 	}
 
-	public void setCoordinates(int x1, int y1, int x2, int y2)
+	public void setCoordinates(double x1, double y1, double x2, double y2)
 	{
 
-
+		xOne = x1;
+		yOne = y1;
+		xTwo = x2;
+		yTwo = y2;
 
 
 
@@ -31,6 +37,9 @@ public class Line
 
 	public void calculateSlope( )
 	{
+		double yTotal = (yTwo - yOne);
+		double xTotal = (xTwo - xOne);
+		slope = yTotal/xTotal;
 
 
 
@@ -38,7 +47,7 @@ public class Line
 
 	public void print( )
 	{
-
+		System.out.println("A line with a startpoint at (" + xOne + "," + yOne + ") and an endpoint at (" + xTwo + "," + yTwo + ") has a slope of " + slope + ".");
 
 
 	}

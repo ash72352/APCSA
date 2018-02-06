@@ -26,7 +26,8 @@ public class Lab03a  //this class is used to test Triangle
 		int c = keyboard.nextInt();
 
 
-		Triangle test = new Triangle(a, b, c);
+		Triangle test = new Triangle();
+		test.setSides(a, b, c);
 		test.calcPerimeter();
 		test.calcArea();
 		test.print();

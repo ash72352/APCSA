@@ -10,6 +10,13 @@ public class Lab02c
 {
 	public static void main( String[] args )
  {
-		//add more test cases
-	}
+		Average test = new Average();
+		test.setNums(140,32);
+		test.average();
+		test.print();
+		
+		test.setNums(42, 526);
+		test.average();
+		test.print();
+ }
 }

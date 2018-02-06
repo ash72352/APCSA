@@ -31,20 +31,23 @@ public class Triangle
 
 	public void setSides(int a, int b, int c)
 	{
-
+		sideA = a;
+		sideB = b;
+		sideC = c;
 
 	}
 
 	public void calcPerimeter( )
 	{
-
+		perimeter = sideA + sideB + sideC;
 
 	}
 
 	public void calcArea( )
 	{
 		double s;
-
+		s = perimeter / 2;
+		theArea = Math.pow((s*(s-sideA) * (s-sideB) * (s-sideC)),0.5);
 
 	}
 
@@ -53,5 +56,6 @@ public class Triangle
 
 
 		System.out.println("\n\n");
+		System.out.println("For a triangle with side lengths of " + sideA + ", " + sideB + ", and " + sideC + " the area of the triangle is " + theArea + ".");
 	}
 }

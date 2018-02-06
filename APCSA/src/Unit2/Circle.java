@@ -13,13 +13,16 @@ public class Circle
 
 	public void setRadius(double rad)
 	{
+		radius = rad;
 	}
 
 	public void calculateArea( )
 	{
+		area = radius * radius * 3.1415;
 	}
 
 	public void print( )
 	{
+		System.out.println("The area of a circle with a radius of " + radius + " is " + area + ".");
 	}
 }

@@ -20,9 +20,11 @@ public class Rectangle
 
 	public void calculatePerimeter( )
 	{
+		perimeter = 2 * length + 2*width;
 	}
 
 	public void print( )
 	{
+		System.out.println("The perimeter of a rectangle with length " + length + " and width " + width + " is " + perimeter + ".");
 	}
 }

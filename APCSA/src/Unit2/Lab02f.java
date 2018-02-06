@@ -6,18 +6,17 @@ package Unit2;
 //Class -
 //Lab  -
 
-public class Lab02d
+public class Lab02f
 {
 	public static void main( String[] args )
  {
-		Cube test = new Cube();
-	 	test.setSide(112);
-	 	test.calculateSurfaceArea();
+		Line test = new Line(1,2,3,4);
+	 	test.calculateSlope();
 	 	test.print();
 
 	 	//add more test cases
-	 	test.setSide(42);
-	 	test.calculateSurfaceArea();
+	 	test.setCoordinates(4,2,10,5);
+	 	test.calculateSlope();
 	 	test.print();
 	 	
 	 	
