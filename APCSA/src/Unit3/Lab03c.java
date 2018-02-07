@@ -15,10 +15,35 @@ public class Lab03c
 {
 	public static void main( String[] args )
  {
- 	//add test cases
+	int a,b,c;
+	Scanner keyboard = new Scanner(System.in);
+	
+	System.out.println("Enter a :: ");
+	a = keyboard.nextInt();
+	
+	System.out.println("Enter b :: ");
+	b = keyboard.nextInt();
+	
+	System.out.println("Enter c :: ");
+	c = keyboard.nextInt();
+ 	Quadratic test = new Quadratic(a,b,c);
+ 	test.calcRoots();
+ 	test.print();
  	
+ 	System.out.println("Enter a :: ");
+	a = keyboard.nextInt();
+	
+	System.out.println("Enter b :: ");
+	b = keyboard.nextInt();
+	
+	System.out.println("Enter c :: ");
+	c = keyboard.nextInt();
+	
+ 	test.setEquation(a, b, c);
+ 	test.calcRoots();
+ 	test.print();
  	
 		
 		
-	}
+ }
 }
