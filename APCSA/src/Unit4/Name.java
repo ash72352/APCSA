@@ -11,6 +11,7 @@ import static java.lang.System.*;
 public class Name
 {
 	private String name;
+	private int space;
 
 	public Name()
 	{
@@ -20,28 +21,32 @@ public class Name
 
 	public Name(String s)
 	{
-
+		name = s;
 
 	}
 
  public void setName(String s)
  {
-
+	 name = s;
 
  }
 
 	public String getFirst()
 	{
-		return "";
+		space = name.lastIndexOf(" ");
+		String firstName = name.substring(0, space);
+		return firstName;
 	}
 
 	public String getLast()
 	{
-		return "";
+		String lastName = name.substring(space + 1);
+		return lastName;
 	}
 
 	public String toString()
 	{
-		return "";
+		String fullName = getFirst() + " " + getLast();
+		return fullName;
 	}
 }

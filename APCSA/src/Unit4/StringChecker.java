@@ -20,7 +20,7 @@ public class StringChecker
 
 	public StringChecker(String s)
 	{
-
+		word = s;
 
 	}
 
@@ -31,22 +31,32 @@ public class StringChecker
 
 	public boolean findLetter(char c)
 	{
-
-
-
-		return false;
+		int let = word.indexOf(c);
+		if(let >= 0)
+			return true;
+		else
+			return false;
 	}
 
 	public boolean findSubString(String s)
 	{
+		String seq = s;
 
-
-
-		return false;
+		int len = seq.length();
+		String check;
+		int yn;
+		yn = word.indexOf(seq.charAt(0));
+		if(yn < 0)
+			return false;
+		check = word.substring(yn, yn+len);
+		if(check.equals(seq))
+			return true;
+		else
+			return false;
 	}
 
-	public String toString()
+	public String currentString()
 	{
-		return "\n\n";
+		return word;
 	}
 }
