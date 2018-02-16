@@ -22,31 +22,36 @@ public class Prime
 
 	public Prime(int num)
 	{
-
+		number = num;
 
 	}
 
 	public void setPrime(int num)
 	{
-
+		number = num;
 
 	}
 
 	public boolean isPrime()
 	{
+		boolean isPrime = true;
+		for(int i = 1; i<=number; i++)
+		{
+			if(number % i == 0)
+				isPrime = false;
+		}
 
 
 
 
 
 
-
-		return true;
+		return isPrime;
 	}
 
 	public String toString()
 	{
-		String output="";
+		String output= "";
 
 
 
