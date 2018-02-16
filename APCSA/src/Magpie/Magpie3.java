@@ -33,7 +33,10 @@ public class Magpie3
 	public String getResponse(String statement)
 	{
 		String response = "";
-		if (statement.length() == 0)
+		String state = statement;
+		
+
+		if(state.trim().equals(""))
 		{
 			response = "Say something, please.";
 		}
@@ -41,12 +44,38 @@ public class Magpie3
 		{
 			response = "Why so negative?";
 		}
-		else if (findKeyword(statement, "mother") >= 0
+		else if (findKeyword(statement,"mother") >= 0
 				|| findKeyword(statement, "father") >= 0
-				|| findKeyword(statement, "sister") >= 0
-				|| findKeyword(statement, "brother") >= 0)
+				|| findKeyword(statement,"sister") >= 0
+				|| findKeyword(statement,"brother") >= 0)
 		{
 			response = "Tell me more about your family.";
+		}
+		else if (findKeyword(statement,"dog") >= 0
+				|| findKeyword(statement,"cat") >= 0)
+		{
+			response = "Tell me more about your pets.";
+		}
+		else if (findKeyword(statement,"mr") >= 0)
+		{
+			response = "He sounds like a great teacher.";
+		}
+		else if (findKeyword(statement,"dude") >= 0)
+		{
+			response = "What's hanging bro?";
+		}
+		else if (findKeyword(statement,"pizza") >= 0)
+		{
+			response = "Mmmm cheese.";
+		}
+		else if (findKeyword(statement,"car") >= 0)
+		{
+			response = "Can you drive yet?";
+		}
+		else if (findKeyword(statement,"mrs") >= 0
+				|| findKeyword(statement,"ms") >= 0)
+		{
+			response = "She sounds like a great teacher.";
 		}
 		else
 		{
@@ -77,9 +106,8 @@ public class Magpie3
 		String phrase = statement.trim();
 		// The only change to incorporate the startPos is in
 		// the line below
-		int psn = phrase.toLowerCase().indexOf(
-				goal.toLowerCase(), startPos);
-
+		int psn = phrase.toLowerCase().indexOf(goal.toLowerCase(), startPos);
+		//psn = the index of the target word in the statement, when it starts searching from the start position
 		// Refinement--make sure the goal isn't part of a
 		// word
 		while (psn >= 0)
@@ -147,11 +175,11 @@ public class Magpie3
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 6;
 		double r = Math.random();
-		int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
+		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
 		String response = "";
-
+		
 		if (whichResponse == 0)
 		{
 			response = "Interesting, tell me more.";
@@ -167,6 +195,14 @@ public class Magpie3
 		else if (whichResponse == 3)
 		{
 			response = "You don't say.";
+		}
+		else if (whichResponse == 4)
+		{
+			response = "Mhm?";
+		}
+		else if (whichResponse == 5)
+		{
+			response = "Yeah, sure.";
 		}
 
 		return response;

@@ -36,21 +36,46 @@ public class Magpie5
 	public String getResponse(String statement)
 	{
 		String response = "";
-		if (statement.length() == 0)
+		if(statement.trim().equals(""))
 		{
 			response = "Say something, please.";
 		}
-
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why so negative?";
 		}
-		else if (findKeyword(statement, "mother") >= 0
+		else if (findKeyword(statement,"mother") >= 0
 				|| findKeyword(statement, "father") >= 0
-				|| findKeyword(statement, "sister") >= 0
-				|| findKeyword(statement, "brother") >= 0)
+				|| findKeyword(statement,"sister") >= 0
+				|| findKeyword(statement,"brother") >= 0)
 		{
 			response = "Tell me more about your family.";
+		}
+		else if (findKeyword(statement,"dog") >= 0
+				|| findKeyword(statement,"cat") >= 0)
+		{
+			response = "Tell me more about your pets.";
+		}
+		else if (findKeyword(statement,"mr") >= 0)
+		{
+			response = "He sounds like a great teacher.";
+		}
+		else if (findKeyword(statement,"dude") >= 0)
+		{
+			response = "What's hanging bro?";
+		}
+		else if (findKeyword(statement,"pizza") >= 0)
+		{
+			response = "Mmmm cheese.";
+		}
+		else if (findKeyword(statement,"car") >= 0)
+		{
+			response = "Can you drive yet?";
+		}
+		else if (findKeyword(statement,"mrs") >= 0
+				|| findKeyword(statement,"ms") >= 0)
+		{
+			response = "She sounds like a great teacher.";
 		}
 
 		// Responses which require transformations
@@ -267,7 +292,12 @@ public class Magpie5
 	private String [] randomResponses = {"Interesting, tell me more",
 			"Hmmm.",
 			"Do you really think so?",
-			"You don't say."
+			"You don't say.",
+			//
+			"Mhm?",
+			"Of course.",
+			"Sure.",
+			"Are you positive?"
 	};
 	
 }
