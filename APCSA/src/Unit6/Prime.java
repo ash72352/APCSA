@@ -35,7 +35,7 @@ public class Prime
 	public boolean isPrime()
 	{
 		boolean isPrime = true;
-		for(int i = 1; i<=number; i++)
+		for(int i = 2; i<number; i++)
 		{
 			if(number % i == 0)
 				isPrime = false;
