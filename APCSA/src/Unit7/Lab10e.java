@@ -16,7 +16,7 @@ public class Lab10e
 	{
 		Scanner keyboard = new Scanner(System.in);
 		char response;
-
+		
 
 
 
