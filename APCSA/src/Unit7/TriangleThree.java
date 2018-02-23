@@ -20,20 +20,39 @@ public class TriangleThree
 
 	public TriangleThree(int count, String let)
 	{
+		letter = let;
+		size = count;
 	}
 
-	public void setTriangle( String let, int sz )
+	public void setTriangle(String let, int sz )
 	{
+		letter = let;
+		size = sz;
 	}
 
-	public String getLetter()
+	public String getTriangle()
 	{
-		return "#";
+		String triangle = "";
+		int length = size;
+		int counter = 1;
+		for(int a = 1; a <= size; a++)
+		{
+			for(int i = 1; i <= length - 1; i++)
+				triangle = triangle + " ";
+			for(int c = 1; c <= counter; c++)
+				triangle = triangle + letter;
+			triangle = triangle + "\n";
+			counter++;
+			length--;
+		}
+		
+		return triangle;
 	}
 
-	public String toString()
+	public String toString(int l)
 	{
 		String output="";
+		
 		return output+"\n";
 	}
 }

@@ -15,8 +15,20 @@ public class Lab10e
 	public static void main(String args[])
 	{
 		Scanner keyboard = new Scanner(System.in);
-		char response;
+		int response;
+		String yn = "y";
+		GuessingGame test = new GuessingGame();
 		
+		while(yn.equalsIgnoreCase("y"))
+		{
+			System.out.println("Guessing Game - how many numbers?");
+			response = keyboard.nextInt();
+			test.setNum(response);
+			test.playGame();
+			System.out.println("Do you want to play again? (y/n)");
+			yn = keyboard.next();
+		}
+		System.out.println("Thanks for playing!");
 
 
 
