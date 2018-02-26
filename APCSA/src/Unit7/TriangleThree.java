@@ -49,10 +49,10 @@ public class TriangleThree
 		return triangle;
 	}
 
-	public String toString(int l)
+	public String toString()
 	{
-		String output="";
+		String output=getTriangle();
 		
-		return output+"\n";
+		return output;
 	}
 }

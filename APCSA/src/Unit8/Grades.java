@@ -19,42 +19,108 @@ public class Grades
 	
 
 	//constructor
-	public void Grades()
+	public Grades()
 	{
 		
 	}
 	
-	public void Grades(int s)
+	public Grades(int s, String a)
 	{
 		size = s;
 		grades = new double[s];
-		Scanner k = new Scanner(System.in);
-		double input = 0.0;
-		for(int i = 0; i < size; i++)
+		String[] g = new String[s];
+		int counter = 0;
+		int c = 0;
+		int[] spaces = new int[s - 1];
+		for(int i = 0; i < a.length(); i++)
 		{
-			System.out.println("Enter grade #" + (i+1) + ":");
-
-			input = k.nextDouble();
-
-			grades[i] = input;
 			
+			if(a.charAt(i) == ' ')
+			{
+				
+				spaces[c] = i;
+				c++;
+			}
+			
+		}
+		int index = 0;
+		for(int i = 0; i < s-1; i++)
+		{
+
+			if(i == 0)
+			{
+				g[index] = a.substring(0, spaces[i]);
+				index++;
+				g[index] = a.substring(spaces[i] + 1, spaces[i + 1]);
+				
+				index++;
+			}
+			else if(i + 1 == s-1)
+			{
+				g[index] = a.substring(spaces[i] + 1);
+			}
+			else
+			{
+				g[index] = a.substring(spaces[i] + 1, spaces[i + 1]);
+				index++;
+			}
+			
+		}
+		for(int i = 0; i < s; i++)
+		{
+			grades[i] = Double.parseDouble(g[i]);
+		}
+		
+	}
+	
+	public void setGrades(int s, String a)
+	{
+		size = s;
+		grades = new double[s];
+		String[] g = new String[s];
+		int counter = 0;
+		int c = 0;
+		int[] spaces = new int[s - 1];
+		for(int i = 0; i < a.length(); i++)
+		{
+			
+			if(a.charAt(i) == ' ')
+			{
+				
+				spaces[c] = i;
+				c++;
+			}
+			
+		}
+		int index = 0;
+		for(int i = 0; i < s-1; i++)
+		{
+
+			if(i == 0)
+			{
+				g[index] = a.substring(0, spaces[i]);
+				index++;
+				g[index] = a.substring(spaces[i] + 1, spaces[i + 1]);
+				
+				index++;
+			}
+			else if(i + 1 == s-1)
+			{
+				g[index] = a.substring(spaces[i] + 1);
+			}
+			else
+			{
+				g[index] = a.substring(spaces[i] + 1, spaces[i + 1]);
+				index++;
+			}
+			
+		}
+		for(int i = 0; i < s; i++)
+		{
+			grades[i] = Double.parseDouble(g[i]);
 		}
 	}
 	
-	public void setGrades(int s)
-	{
-		size = s;
-		grades = new double[s];
-		Scanner k = new Scanner(System.in);
-		double input = 0.0;
-		for(int i = 0; i < size; i++)
-		{
-			System.out.println("Enter grade #" + (i+1) + ":");
-			input = k.nextDouble();
-			grades[i] = input;
-			
-		}
-	}
 
 	//set method
 
@@ -91,7 +157,6 @@ public class Grades
 		{
 			output = output + "grade #" + i + ":\t" + grades[i] + "\n";
 		}
-		output = output + "The average is: " + getAverage() + ".";
 		return output;
 	}
 

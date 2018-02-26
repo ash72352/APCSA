@@ -15,22 +15,20 @@ public class Lab11c
 {
 	public static void main( String args[] ) 
 	{
-		Scanner k = new Scanner(System.in);
-		TriangleThree t = new TriangleThree();
-		String let;
-		int count;
-		
-		
-		out.println("Letter: ");
-		let = k.nextLine();
-		
-		out.println("Size: ");
-		count = k.nextInt();
-		t.setTriangle(let, count);
-		
-		String tri = t.getTriangle();
-		
-		out.println("\n" + tri);
+		TriangleThree triTest = new TriangleThree(3,"A");
+		System.out.println(triTest.toString());
+
+		triTest.setTriangle("X",7);
+		System.out.println(triTest.toString());
+
+		triTest.setTriangle("R",1);
+		System.out.println(triTest.toString());
+
+		triTest.setTriangle("T",5);
+		System.out.println(triTest.toString());
+
+		triTest.setTriangle("W",4);
+		System.out.println(triTest.toString());
 		
 		
 		
