@@ -8,7 +8,8 @@ package Unit9;
  *
  * <code>Card</code> represents a playing card.
  */
-public class Card {
+public class Card 
+{
 
 	/**
 	 * String value that holds the suit of the card
@@ -74,7 +75,7 @@ public class Card {
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 		
-		return 0;
+		return pointValue;
 	}
 
 	/** Compare this card with the argument.

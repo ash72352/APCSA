@@ -1,6 +1,7 @@
 package Unit9;
 
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +26,7 @@ public class Deck
 	 * The next card to be dealt is at size - 1.
 	 */
 	private int size;
-
+	private int remaining;
 
 	/**
 	 * Creates a new <code>Deck</code> instance.<BR>
@@ -38,6 +39,37 @@ public class Deck
 	public Deck(String[] ranks, String[] suits, int[] values) 
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		size = 0;
+		int rankSize = 0;
+		int suitSize = 0;
+		for(String item : suits)
+		{
+			suitSize++;
+		}
+		for(String r : ranks)
+		{
+			rankSize++;
+			for(String s : suits)
+			{
+				size++;
+			}
+		}
+		cards = new Card[size];
+		String su = "";
+		int a = 0;
+
+		for(int i = 0; i < suitSize; i++)
+		{
+			for(int b = 0; b < rankSize; b++)
+			{
+				cards[a] = new Card(ranks[b], suits[i], values[b]);
+				a++;
+			}
+		}
+		
+		remaining = size;
+		this.shuffle();
+		
 	}
 
 
@@ -48,6 +80,10 @@ public class Deck
 	public boolean isEmpty() 
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		boolean yn = false;
+		if(remaining <= 0)
+			yn = true;
+		return yn;
 	}
 
 	/**
@@ -57,6 +93,8 @@ public class Deck
 	public int size() 
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		
+		return size;
 	}
 
 	/**
@@ -66,6 +104,42 @@ public class Deck
 	public void shuffle() 
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		Random r = new Random();
+		Card[] temp = new Card[size];
+		for(int c = 0; c < remaining; c++)
+		{
+			temp[c] = cards[c];
+		}
+		int[] placeHolder = new int[size];
+		for(int c = 0; c < size; c++)
+		{
+			placeHolder[c] = 0;
+		}
+		int a = 0;
+		for(int i = 0; i < remaining; i++)
+		{
+			a = r.nextInt(remaining);
+			while(placeHolder[a] == 1 || placeHolder[a] == -1)
+			{
+				a = r.nextInt(remaining);
+			}
+			placeHolder[a] = 1;
+			for(int b = 0; b < remaining; b++)
+			{
+				if(placeHolder[b] == 1)
+				{
+					temp[b] = cards[i];
+					placeHolder[b] = -1;
+				}
+			}
+		}
+		for(int i = 0; i < remaining; i++)
+		{
+			cards[i] = temp[i];
+		}
+		
+			
+
 	}
 
 	/**
@@ -76,6 +150,13 @@ public class Deck
 	public Card deal() 
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(isEmpty() != true)
+		{
+			remaining--;
+			return cards[remaining];
+		}
+		else
+			return null;
 	}
 
 	/**
@@ -85,34 +166,41 @@ public class Deck
 	@Override
 	public String toString() 
 	{
-		String rtn = "size = " + size + "\nUndealt cards: \n";
+		String rtn = "size = " + remaining + "\nUndealt cards: \n";
 
 
 		//Unit 9 - modify to work with Arrays
-		/*
-		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards.get(k);
-			if (k != 0) {
+		
+		for (int k = remaining - 1; k >= 0; k--) 
+		{
+			rtn = rtn + cards[k];
+			if (k != 0) 
+			{
 				rtn = rtn + ", ";
 			}
-			if ((size - k) % 2 == 0) {
+			if ((size - k) % 2 == 0) 
+			{
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.size() - 1; k >= size; k--) {
-			rtn = rtn + cards.get(k);
-			if (k != size) {
+		
+		for (int k = remaining; k < size; k++) 
+		{
+			rtn = rtn + cards[k];
+			if (k != remaining) 
+			{
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.size()) % 2 == 0) {
+			if ((k - size) % 2 == 0) 
+			{
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
 		}
-		*/
+		
 
 		rtn = rtn + "\n";
 		return rtn;
