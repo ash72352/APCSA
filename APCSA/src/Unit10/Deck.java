@@ -42,28 +42,26 @@ public class Deck
 		size = 0;
 		int rankSize = 0;
 		int suitSize = 0;
-		for(String item : suits)
+		for(@SuppressWarnings("unused") String item : suits)
 		{
 			suitSize++;
 		}
-		for(String r : ranks)
+		for(@SuppressWarnings("unused") String r : ranks)
 		{
 			rankSize++;
-			for(String s : suits)
+			for(@SuppressWarnings("unused") String s : suits)
 			{
 				size++;
 			}
 		}
 		cards = new ArrayList<Card>();
-		String su = "";
-		int a = 0;
+
 
 		for(int i = 0; i < suitSize; i++)
 		{
 			for(int b = 0; b < rankSize; b++)
 			{
 				cards.add(new Card(ranks[b], suits[i], values[b]));
-				a++;
 			}
 		}
 		
