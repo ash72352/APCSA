@@ -1,13 +1,13 @@
+package Unit11;
+
+
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
 //Lab  -
 
-import java.util.Arrays;
-import java.util.Scanner;
-import static java.lang.System.*;
-import static java.util.Arrays.*;
+
 
 public class Student
 {
@@ -22,66 +22,73 @@ public class Student
 	
 	public Student(String name, String gradeList)
 	{
-
+		setName(name);
+		setGrades(gradeList);
 
 
 	}
 	
 	public void setName(String name)
 	{
-
-
+		
+		myName = name;
+		
 	}	
 	
 	public void setGrades(String gradeList)
 	{
-
-	
+		
+		
+		myGrades = new Grades(gradeList);
+		
 	}
 	
 	public void setGrade(int spot, double grade)
 	{
-
+		
+		myGrades.setGrade(spot, grade);
 
 	}
 
 	public String getName()
 	{
-		return "";
+		return myName;
 	}
 	
 	public int getNumGrades()
 	{
-		return 0;
+		return myGrades.getNumGrades();
 	}
 
 	public double getSum()
 	{
-		return 0.0;
+		return myGrades.getSum();
 	}
 	
 	public double getAverage()
 	{
-		return 0.0;
+		double avg = 0;
+		avg = this.getSum()/(double)this.getNumGrades();
+		return avg;
 	}
 
 	public double getAverageMinusLow()
 	{
-		return 0.0;
+		return (myGrades.getSum() - myGrades.getLowGrade())/(double)(myGrades.getNumGrades() - 1);
 	}
 	
 	public double getHighGrade()
 	{
-		return 0.0;		
+		return myGrades.getHighGrade();		
 	}
 	
 	public double getLowGrade()
 	{
-		return 0.0;	
+		return myGrades.getLowGrade();	
 	}
 	
 	public String toString()
 	{
-		return "";
+		return myName + " " + myGrades;
 	}	
 }
