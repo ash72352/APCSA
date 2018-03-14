@@ -9,7 +9,7 @@ package Unit11;
 
 
 
-public class Student
+public class Student implements Comparable <Student>
 {
 	private String myName;
 	private Grades myGrades;
@@ -86,9 +86,25 @@ public class Student
 	{
 		return myGrades.getLowGrade();	
 	}
+	public int compareTo(Student o)
+	{
+		if(this.getAverage() == ((Student) o).getAverage())
+			return 0;
+		else if(this.getAverage() < ((Student) o).getAverage())
+		{
+			return -1;
+		}
+		else
+		{
+			return 1;
+		}
+		
+	}
 	
 	public String toString()
 	{
 		return myName + " " + myGrades;
-	}	
+	}
+
+
 }

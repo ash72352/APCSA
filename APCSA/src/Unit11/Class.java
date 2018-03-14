@@ -215,6 +215,85 @@ public class Class
 		return output;
 	}
 	
+	public void sort()
+	{
+		List<Student> a = studentList;
+		//Student[] p = new Student[size];
+		List<Student> p = new ArrayList<Student>();
+		/*for(int i = 0; i < studentList.length; i++)
+		{
+			p[i] = c.getStudent(i);
+		}*/
+		for(int i = 0; i < studentList.size(); i++)
+		{
+			p.add(this.getStudent(i));
+		}
+				
+		Student w;
+		boolean isSorted = false;
+		boolean yn = false;
+		boolean goneThrough = false;
+		/*while(isSorted == false)
+		{
+			yn = true;
+			for(int i = 0; i < studentList.length-1; i++)
+			{
+				if(p[i].getAverage() > p[i + 1].getAverage())
+				{
+					w = p[i+1];
+					p[i + 1] = p[i];
+					p[i] = w;
+					goneThrough = true;
+					if(goneThrough)
+					{
+						yn = false;
+						break;
+					}
+				}
+				
+			}
+			if(yn)
+				isSorted=true;
+		}
+		for(int i = 0; i < size; i++)
+		{
+				
+			a.addStudent(i, p[i]);
+					
+		}*/
+				
+		while(isSorted == false)
+		{
+			yn = true;
+			for(int i = 0; i < studentList.size()-1; i++)
+			{
+				if(p.get(i).getAverage() > p.get(i + 1).getAverage())
+				{
+					w = p.get(i+1);
+					p.set(i + 1, p.get(i));
+					p.set(i,w);
+					goneThrough = true;
+					if(goneThrough)
+					{
+						yn = false;
+						break;
+					}
+				}
+						
+			}
+			if(yn)
+				isSorted=true;
+		}
+		for(int i = 0; i < studentList.size(); i++)
+		{
+					
+			a.set(i, p.get(i));
+					
+		}
+		studentList = a;
+	}
+	
+	
 	public String toString()
 	{
 		String output=""+getClassName()+"\n";

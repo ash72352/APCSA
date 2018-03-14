@@ -45,80 +45,9 @@ public class GradeBookFileRunner
 		
 		out.println("\n");
 		out.println(c);
-		Class a = new Class(name, size);
-		//Student[] p = new Student[size];
-		List<Student> p = new ArrayList<Student>();
-		/*for(int i = 0; i < size; i++)
-		{
-			p[i] = c.getStudent(i);
-		}*/
-		for(int i = 0; i < size; i++)
-		{
-			p.add(c.getStudent(i));
-		}
 		
-		Student w;
-		boolean isSorted = false;
-		boolean yn = false;
-		boolean goneThrough = false;
-		/*while(isSorted == false)
-		{
-			yn = true;
-			for(int i = 0; i < size-1; i++)
-			{
-				if(p[i].getAverage() > p[i + 1].getAverage())
-				{
-					w = p[i+1];
-					p[i + 1] = p[i];
-					p[i] = w;
-					goneThrough = true;
-					if(goneThrough)
-					{
-						yn = false;
-						break;
-					}
-				}
-				
-			}
-			if(yn)
-				isSorted=true;
-		}
-		for(int i = 0; i < size; i++)
-		{
-			
-			a.addStudent(i, p[i]);
-			
-		}*/
+		c.sort();
 		
-		while(isSorted == false)
-		{
-			yn = true;
-			for(int i = 0; i < size-1; i++)
-			{
-				if(p.get(i).getAverage() > p.get(i + 1).getAverage())
-				{
-					w = p.get(i+1);
-					p.set(i + 1, p.get(i));
-					p.set(i,w);
-					goneThrough = true;
-					if(goneThrough)
-					{
-						yn = false;
-						break;
-					}
-				}
-				
-			}
-			if(yn)
-				isSorted=true;
-		}
-		for(int i = 0; i < size; i++)
-		{
-			
-			a.addStudent(i, p.get(i));
-			
-		}
-		c = a;
 		out.println(c);
 		out.println("Failure List = " + c.getFailureList(70));	
 		out.println("Highest Average = " + c.getStudentWithHighestAverage());
