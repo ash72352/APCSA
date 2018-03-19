@@ -7,70 +7,74 @@ package Unit13;
 //Class -
 //Lab  -
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.io.File;
-import java.io.IOException;
-import static java.lang.System.*;
+
 
 public class NumberSort
 {
 	//instance variables and other methods not shown
-
+	public NumberSort()
+	{
+	}
+	
+	
 	private static int getNumDigits(int number)
 	{
-		int count = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
+		char[] c = ("" + number).toCharArray();
+		
+		int count = c.length;
 		
 		return count;
 	}
 	
 	public static int[] getSortedDigitArray(int number)
 	{
-		int[] sorted = null;
+		
+		int numDig = getNumDigits(number);
+		
+		int[] sorted = new int[numDig];
+		
+		int num = number;
+		
+		for(int i = 0; i < sorted.length; i++)
+		{
+			sorted[numDig-1-i] = num%10;
+			num = num/10;
+		}
+		
+		int[] temp = sorted;
+		
+		boolean isSorted = false;
+		boolean goneThrough = false;
+		boolean yn = false;
+		
+		while(isSorted == false)
+		{
+			yn = true;
+			for(int i = 0; i < temp.length-1; i++)
+			{
+				if(temp[i]> temp[i + 1])
+				{
+					num = temp[i+1];
+					temp[i + 1] = temp[i];
+					temp[i] = num;
+					goneThrough = true;
+					if(goneThrough)
+					{
+						yn = false;
+						break;
+					}
+				}
+				
+			}
+			if(yn)
+				isSorted=true;
+		}
+		sorted = temp;
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		return sorted;
 	}
 }
