@@ -72,9 +72,6 @@ public class NumberSort
 		}
 		sorted = temp;
 		
-		
-		
-		
 		return sorted;
 	}
 }
