@@ -19,11 +19,21 @@ public class Lab15d
 {
 	public static void main( String args[] ) throws IOException
 	{
+		Scanner k = new Scanner(new File(System.getProperty("user.dir") + "\\src\\Unit13\\" + "lab15d.dat"));
+		int runs = k.nextInt();
+		k.nextLine();
+		FancyWords test;
+		int currentRun = 0;
+		do
+		{
+			test = new FancyWords(k.nextLine());
+			out.println(test);
+			currentRun++;
+		}while(currentRun<runs);
 
 
-
-
-
-
+		
+		
+		
 	}
 }
