@@ -35,7 +35,7 @@ public class Lab22c
 		out.println("adding xylophone");
 		test.add("xylophone");
 		out.println("printing the list ::  "+test+"\n\n");
-		out.println("removing bobby");
+		out.println("removing tommy");
 		test.remove("tommy");
 		test.remove("tommy");  //should do nothing		
 		out.println("printing the list ::  "+test+"\n\n");		
