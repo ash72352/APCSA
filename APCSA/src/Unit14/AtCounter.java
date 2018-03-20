@@ -34,7 +34,7 @@ public class AtCounter
 
 	public int countAts(int r, int c)
 	{
-		out.println(r + " , " + c);
+		out.print(r + "," + c + " has ");
 		//add in recursive code to count up the # of @s connected
 		//start checking at spot [r,c]
 		if(atMat[r][c] == '@' && places[r][c] != 1)
@@ -79,12 +79,6 @@ public class AtCounter
 		String output="";
 		output+=getAtCount()+" @s connected.";
 		
-		for(int i = 0; i < places.length; i ++)
-		{
-			out.print(Arrays.toString(places[i]));
-			out.print(Arrays.toString(atMat[i]));
-			out.println();
-		}
 		return output;
 	}
 }
