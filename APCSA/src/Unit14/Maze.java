@@ -108,7 +108,7 @@ public class Maze
 					yn = true;
 			}
 			
-			out.println(yn);
+			
 		}
 		else
 			yn = false;
@@ -132,10 +132,10 @@ public class Maze
 		
 		if(hasExitPath(0,0)==true)
 		{
-			output = output + "\nexit found";
+			output = output + "\nexit found\n";
 		}
 		else
-			output = output + "\nexit not found";
+			output = output + "\nexit not found\n\n";
 
 
 

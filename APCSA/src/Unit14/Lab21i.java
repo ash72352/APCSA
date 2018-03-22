@@ -17,10 +17,18 @@ public class Lab21i
 	public static void main( String args[] ) throws IOException
 	{
 		Scanner k = new Scanner(new File(System.getProperty("user.dir") + "\\src\\Unit14\\" + "lab21i.dat"));
-		int size = k.nextInt();
-		k.nextLine();
-		String line = k.nextLine();
-		Maze test = new Maze(size, line);
-		out.print(test);
+		int size;
+		String line;
+		
+		Maze test;
+		while(k.hasNextLine())
+		{
+			size = k.nextInt();
+			k.nextLine();
+			line = k.nextLine();
+			
+			test = new Maze(size, line);
+			out.print(test);
+		}
 	}
 }
