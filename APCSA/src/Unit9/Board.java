@@ -46,7 +46,7 @@ public abstract class Board {
 			System.out.println(deck);
 			System.out.println("----------");
 		}
-		dealMyCards();
+		newGame();
 	}
 
 	/**
@@ -54,6 +54,7 @@ public abstract class Board {
 	 * dealing some cards to this board.
 	 */
 	public void newGame() {
+		deck.restart();
 		deck.shuffle();
 		dealMyCards();
 	}
@@ -113,9 +114,13 @@ public abstract class Board {
 	 *        cards to be replaced.
 	 */
 	public void replaceSelectedCards(List<Integer> selectedCards) {
-		for (Integer k : selectedCards) {
-			deal(k.intValue());
+		if(!deck.isEmpty())
+		{
+			for (Integer k : selectedCards) {
+				deal(k.intValue());
+			}
 		}
+		
 	}
 
 	/**
@@ -184,9 +189,14 @@ public abstract class Board {
 	/**
 	 * Deal cards to this board to start the game.
 	 */
-	private void dealMyCards() {
+	private void dealMyCards() 
+	{
 		for (int k = 0; k < cards.length; k++) {
 			cards[k] = deck.deal();
 		}
+	}
+	public void replaceCard(int i, Card c) {
+		cards[i] = c;
+		
 	}
 }

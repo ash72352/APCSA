@@ -69,6 +69,7 @@ public class ElevensBoard extends Board
 	 * dealing some cards to this board.
 	 */
 	public void newGame() {
+		deck.restart();
 		deck.shuffle();
 		dealMyCards();
 	}
@@ -82,6 +83,11 @@ public class ElevensBoard extends Board
 	public int size() 
 	{
 		return cards.length;
+	}
+	
+	public void replaceCard(int i, Card c)
+	{
+		cards[i] = c;
 	}
 
 	/**
@@ -134,6 +140,7 @@ public class ElevensBoard extends Board
 	 *        cards to be replaced.
 	 */
 	public void replaceSelectedCards(List<Integer> selectedCards) {
+		
 		for (Integer k : selectedCards) 
 		{
 			deal(k.intValue());
@@ -198,14 +205,21 @@ public class ElevensBoard extends Board
 	public boolean isLegal(List<Integer> selectedCards) 
 	{
 		int sum = 0;
+		int passes = 0;
+		boolean diffName = true;
+		String temp = "";
 		for(int i = 0; i < selectedCards.size(); i++)
 		{
 			sum += cards[selectedCards.get(i)].pointValue();
 			
+			if(temp.equalsIgnoreCase(cards[selectedCards.get(i)].rank()))
+				diffName = false;
+			temp = cards[selectedCards.get(i)].rank();
+			passes++;
 		}
 		if(sum == 11)
 			return true;
-		else if(sum == 0)
+		else if(sum == 0 && diffName && passes == 3)
 			return true;
 		else
 			return false;
@@ -223,16 +237,103 @@ public class ElevensBoard extends Board
 	public boolean anotherPlayIsPossible() 
 	{
 		Card temp;
+		String t = "";
+		boolean diffName = true;
+		boolean play = false;
+		boolean allNull = true;
+		for(int i = 0; i < cards.length; i++)
+		{
+			if(!(cards[i] == null))
+				allNull = false;
+				
+		}
+		if(allNull)
+			return true;
 		for(int i = 0; i < cards.length; i++)
 		{
 			temp = cards[i];
-			for(int a = 0; a < cards.length; a++)
+			if(cards[i] != null)
 			{
-				if((temp.pointValue()+cards[a].pointValue())==11 || (temp.pointValue()+cards[a].pointValue())==0)
-					return true;
+				for(int a = 0; a < cards.length; a++)
+				{
+					if(cards[a] != null)
+					{
+						if((temp.pointValue()+(int)cards[a].pointValue())==11)
+						{
+							play = true;
+						}
+					}
+				}
 			}
 		}
-		return false;
+		for(int i = 0; i < cards.length; i++)
+		{
+			temp = cards[i];
+			if(cards[i] != null)
+			{
+				if((int)temp.pointValue() == 0)
+				{
+					if(!t.equalsIgnoreCase(temp.rank()))
+						diffName = false;
+					t = temp.rank();
+					for(int a = 0; a < cards.length; a++)
+					{
+						if(cards[a] != null)
+						{
+							if((int)(temp.pointValue()+cards[a].pointValue())==0 && diffName == true)
+							{
+								if(!t.equalsIgnoreCase(cards[a].rank()))
+									diffName = false;
+								for(int b = 0; b < cards.length; b++)
+								{
+									if(cards[b] != null)
+									{
+										if(!t.equalsIgnoreCase(cards[b].rank()) && !cards[a].rank().equalsIgnoreCase(cards[b].rank()))
+											diffName = false;
+										if((int)(temp.pointValue()+cards[a].pointValue()+cards[b].pointValue())==0 && diffName == true)
+										{
+											play = true;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		boolean[] jqk = {false, false, false};
+		boolean has = true;
+		for(int i = 0; i< cards.length; i++)
+		{
+			if(cards[i] != null)
+			{
+				if(cards[i].rank() == "king")
+				{
+					jqk[2] = true;
+				}
+				else if(cards[i].rank() == "queen")
+				{
+					jqk[1] = true;
+				}
+				else if(cards[i].rank() == "jack")
+				{
+					jqk[0] = true;
+				}
+			}
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			if(jqk[i] != true)
+			{
+				has = false;
+				break;
+			}
+		}
+		if(has)
+			play = true;
+		
+		return play;
 		
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}

@@ -94,9 +94,14 @@ public class Deck
 	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		
-		return size;
+		return remaining;
 	}
-
+	
+	public void restart()
+	{
+		remaining = size;
+	}
+	
 	/**
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.

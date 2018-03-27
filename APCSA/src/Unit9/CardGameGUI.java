@@ -131,18 +131,23 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	/**
 	 * Draw the display (cards and messages).
 	 */
-	public void repaint() {
-		for (int k = 0; k < board.size(); k++) {
-			String cardImageFileName =
-				imageFileName(board.cardAt(k), selections[k]);
+	public void repaint() 
+	{
+		for (int k = 0; k < board.size(); k++) 
+		{
+			String cardImageFileName = imageFileName(board.cardAt(k), selections[k]);
 			URL imageURL = getClass().getResource(cardImageFileName);
-			if (imageURL != null) {
+			if (imageURL != null) 
+			{
+				
 				ImageIcon icon = new ImageIcon(imageURL);
 				displayCards[k].setIcon(icon);
 				displayCards[k].setVisible(true);
-			} else {
-				throw new RuntimeException(
-					"Card image not found: \"" + cardImageFileName + "\"");
+				
+			} 
+			else 
+			{
+				throw new RuntimeException("Card image not found: \"" + cardImageFileName + "\"");
 			}
 		}
 		statusMsg.setText(board.deckSize()
@@ -283,32 +288,67 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	 * or the "Restart" button).
 	 * @param e the button click action event
 	 */
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(replaceButton)) {
+	public void actionPerformed(ActionEvent e) 
+	{
+		if (e.getSource().equals(replaceButton)) 
+		{
 			// Gather all the selected cards.
 			List<Integer> selection = new ArrayList<Integer>();
-			for (int k = 0; k < board.size(); k++) {
-				if (selections[k]) {
+			for (int k = 0; k < board.size(); k++) 
+			{
+				if (selections[k]) 
+				{
 					selection.add(new Integer(k));
 				}
 			}
 			// Make sure that the selected cards represent a legal replacement.
-			if (!board.isLegal(selection)) {
+			if (!board.isLegal(selection)) 
+			{
 				signalError();
 				return;
 			}
-			for (int k = 0; k < board.size(); k++) {
+			for (int k = 0; k < board.size(); k++) 
+			{
 				selections[k] = false;
 			}
+			boolean emptyDeck = false;
 			// Do the replace.
-			board.replaceSelectedCards(selection);
-			if (board.isEmpty()) {
+			if(board.deckSize() == 0)
+				emptyDeck = true;
+			if(emptyDeck)
+			{
+				
+				String cardImageFileName = imageFileName(null, false);
+				URL imageURL = getClass().getResource(cardImageFileName);
+				
+				ImageIcon icon = new ImageIcon(imageURL);
+				
+				
+				for(int i = 0; i < selection.size(); i++)
+				{
+					board.replaceCard(selection.get(i), null);
+					displayCards[selection.get(i)].setIcon(icon);
+					displayCards[selection.get(i)].setVisible(true);
+				}
+			}
+			else
+			{
+				board.replaceSelectedCards(selection);
+			}
+			
+			if (board.isEmpty()) 
+			{
 				signalWin();
-			} else if (!board.anotherPlayIsPossible()) {
+			} 
+			else if (!board.anotherPlayIsPossible()) 
+			{
 				signalLoss();
 			}
+			
 			repaint();
-		} else if (e.getSource().equals(restartButton)) {
+		} 
+		else if (e.getSource().equals(restartButton)) 
+		{
 			board.newGame();
 			getRootPane().setDefaultButton(replaceButton);
 			winMsg.setVisible(false);
@@ -332,9 +372,12 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	 */
 	private void signalWin() {
 		getRootPane().setDefaultButton(restartButton);
+		if(!winMsg.isVisible())
+		{
+			totalWins++;
+			totalGames++;
+		}
 		winMsg.setVisible(true);
-		totalWins++;
-		totalGames++;
 	}
 
 	/**
@@ -342,8 +385,12 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	 */
 	private void signalLoss() {
 		getRootPane().setDefaultButton(restartButton);
+		
+		if(!lossMsg.isVisible())
+		{
+			totalGames++;
+		}
 		lossMsg.setVisible(true);
-		totalGames++;
 	}
 
 	/**
@@ -356,11 +403,14 @@ public class CardGameGUI extends JFrame implements ActionListener {
 		 * Each card is represented as a label.
 		 * @param e the mouse event.
 		 */
-		public void mouseClicked(MouseEvent e) {
-			for (int k = 0; k < board.size(); k++) {
-				if (e.getSource().equals(displayCards[k])
-						&& board.cardAt(k) != null) {
+		public void mouseClicked(MouseEvent e) 
+		{
+			for (int k = 0; k < board.size(); k++) 
+			{
+				if (e.getSource().equals(displayCards[k]) && board.cardAt(k) != null) 
+				{
 					selections[k] = !selections[k];
+					
 					repaint();
 					return;
 				}
