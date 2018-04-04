@@ -311,30 +311,11 @@ public class CardGameGUI extends JFrame implements ActionListener {
 			{
 				selections[k] = false;
 			}
-			boolean emptyDeck = false;
+			
 			// Do the replace.
-			if(board.deckSize() == 0)
-				emptyDeck = true;
-			if(emptyDeck)
-			{
-				
-				String cardImageFileName = imageFileName(null, false);
-				URL imageURL = getClass().getResource(cardImageFileName);
-				
-				ImageIcon icon = new ImageIcon(imageURL);
-				
-				
-				for(int i = 0; i < selection.size(); i++)
-				{
-					board.replaceCard(selection.get(i), null);
-					displayCards[selection.get(i)].setIcon(icon);
-					displayCards[selection.get(i)].setVisible(true);
-				}
-			}
-			else
-			{
-				board.replaceSelectedCards(selection);
-			}
+			
+			board.replaceSelectedCards(selection);
+			
 			
 			if (board.isEmpty()) 
 			{

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * The ElevensBoard class represents the board in a game of Elevens.
  */
-public class ElevensBoard extends Board
+public class ElevensBoard2 extends Board
 {
 
 	/**
@@ -54,10 +54,13 @@ public class ElevensBoard extends Board
 	/**
 	 * Creates a new <code>ElevensBoard</code> instance.
 	 */
-	public ElevensBoard() 
+	public ElevensBoard2() 
 	{
-		
 		super(BOARD_SIZE,RANKS,SUITS,POINT_VALUES);
+		cards = new Card[BOARD_SIZE];
+		deck = new Deck(RANKS,SUITS,POINT_VALUES);
+		newGame();
+		System.out.println("David Datta, APCSA P. 4");
 		
 	}
 
@@ -66,7 +69,6 @@ public class ElevensBoard extends Board
 	 * dealing some cards to this board.
 	 */
 	public void newGame() {
-		deck.restart();
 		deck.shuffle();
 		dealMyCards();
 	}
@@ -205,17 +207,29 @@ public class ElevensBoard extends Board
 		{
 			sum += cards[selectedCards.get(i)].pointValue();
 			
-			if(temp.equalsIgnoreCase(cards[selectedCards.get(i)].rank()))
-				diffName = false;
+			
 			temp = cards[selectedCards.get(i)].rank();
 			passes++;
 		}
-		if(sum == 11)
+		try{
+		if(selectedCards.size() == 2 && cards[selectedCards.get(0)].rank().equals(cards[selectedCards.get(1)].rank()))
 			return true;
-		else if(sum == 0 && diffName && passes == 3)
+		else if(sum == 11)
 			return true;
+		else if(sum == 0 && passes == 2)
+			return true;
+		else if((sum) == 0)
+		{
+			return true;
+		}
 		else
 			return false;
+		}
+		catch(ArithmeticException e)
+		{
+			return true;
+		}
+		
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}
 
@@ -242,9 +256,13 @@ public class ElevensBoard extends Board
 		}
 		if(allNull)
 			return true;
+		int sum = 0;
+		int d = 0;
+		int passes = 0;
 		for(int i = 0; i < cards.length; i++)
 		{
 			temp = cards[i];
+			
 			if(cards[i] != null)
 			{
 				for(int a = 0; a < cards.length; a++)
@@ -254,6 +272,23 @@ public class ElevensBoard extends Board
 						if((temp.pointValue()+(int)cards[a].pointValue())==11)
 						{
 							play = true;
+						}
+						else if(temp.pointValue() == cards[a].pointValue() && temp.rank().equalsIgnoreCase(cards[a].rank()))
+						{
+							play = true;
+						}
+						else
+						{
+							
+							sum = (temp.pointValue()+(int)cards[a].pointValue());
+							for(int e = 0; e < cards.length; e++)
+							{
+								if(sum + cards[e].pointValue() == 11)
+								{
+									play = true;
+									break;
+								}
+							}
 						}
 					}
 				}
