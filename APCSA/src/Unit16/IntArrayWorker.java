@@ -1,4 +1,7 @@
 package Unit16;
+
+import java.util.Arrays;
+
 public class IntArrayWorker
 {
   /** two dimensional matrix */
@@ -99,5 +102,51 @@ public class IntArrayWorker
       }
     }
   }
+  public int getCount(int num)
+  {
+	  int count = 0;
+	  for(int[] row : matrix)
+	  {
+		  for(int item : row)
+		  {
+			  if(num == item)
+			  {
+				  count++;
+			  }
+		  }
+	  }
+	  return count;
+  }
+
+public int getLargest() 
+{
+	int max = -100000000;
+	for(int[] row : matrix)
+	  {
+		  for(int item : row)
+		  {
+			  if(max < item)
+			  {
+				  max = item;
+			  }
+		  }
+	  }
+	return max;
+}
+
+public int getColTotal(int i) 
+{
+	int count = 0;
+	int total = 0;
+	for(int[] item : matrix)
+	{
+		count++;
+	}
+	for(int a = 0; a < count; a++)
+	{
+		total+= matrix[a][i];
+	}
+	return total;
+}
  
 }
