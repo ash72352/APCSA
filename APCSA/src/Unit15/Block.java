@@ -26,7 +26,7 @@ public class Block implements Locatable
 		yPos = 150;
 		width = 10;
 		height = 10;
-		color = Color.BLACK;
+		setColor(Color.BLACK);
 
 	}
 
@@ -38,7 +38,7 @@ public class Block implements Locatable
 		yPos = y;
 		width = 10;
 		height = 10;
-		color = Color.BLACK;
+		setColor(Color.BLACK);
 	}
 	
 	
@@ -48,7 +48,7 @@ public class Block implements Locatable
 		yPos = y;
 		width = w;
 		height = h;
-		color = c;
+		setColor(c);
 	}
 	
 	public Block(int x, int y, int w, int h) 
@@ -57,7 +57,7 @@ public class Block implements Locatable
 		yPos = y;
 		width = w;
 		height = h;
-		color = Color.BLACK;
+		setColor(Color.BLACK);
 	}
 	
 	
@@ -75,7 +75,7 @@ public class Block implements Locatable
    public void draw(Graphics window)
    {
    	//uncomment after you write the set and get methods
-      window.setColor(color);
+      window.setColor(getColor());
       window.fillRect(getX(), getY(), getWidth(), getHeight());
    }
 
@@ -150,7 +150,11 @@ public class Block implements Locatable
 	public String toString()
 	{
 		String output ="";
-		output+= "xPos: " + xPos + "\tyPos: " + yPos + "\nWidth: " + width + "\tHeight: " + height + "\nColor: " + color;
+		output+= "xPos: " + xPos + "\tyPos: " + yPos + "\nWidth: " + width + "\tHeight: " + height + "\nColor: " + getColor();
 		return output;
+	}
+
+	public Color getColor() {
+		return color;
 	}
 }
