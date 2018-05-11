@@ -28,7 +28,6 @@ import Unit15.Block;
 
 public class gameBoard extends Canvas implements KeyListener, Runnable
 {
-	public boolean running = true;
 	private Player playerOne;
 	private Player playerTwo;
 	private final int bombOneCount = 1000;
@@ -77,7 +76,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 	@SuppressWarnings("unchecked")
 	public gameBoard()
 	{
-		
+		JOptionPane.showMessageDialog(getParent(), "BOMBBRAWL: BY DAVID DATTA\nPLAYERONE: Use Arrows, Shift to place Bomb\nPLAYERTWO: Use WASD and E to Place Bomb\nFirst to run out of lives wins!");
 		//borders:
 		walls = new Walls();
 		walls.append(new Rectangle(50,50,10,420));
@@ -88,13 +87,53 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		walls.append(new Rectangle(100,50,10,100));
 		walls.append(new Rectangle(100,100,100,10));
 		walls.append(new Rectangle(250,100,100,10));
-		walls.append(new Rectangle(160,150,10,270));
+		walls.append(new Rectangle(160,150,10,200));
 		walls.append(new Rectangle(60,210,100,10));
 		walls.append(new Rectangle(210,150,10,270));
 		walls.append(new Rectangle(210,350,100,10));
+		walls.append(new Rectangle(310,200,100,10));
+		walls.append(new Rectangle(610,330,10,100));
+		walls.append(new Rectangle(510,330,160,10));
+		walls.append(new Rectangle(510,280,100,10));
+		walls.append(new Rectangle(100,400,10,50));
+		walls.append(new Rectangle(50,250,50,10));
+		walls.append(new Rectangle(115,300,50,10));
+		walls.append(new Rectangle(515,100,10,100));
+		walls.append(new Rectangle(600,200,50,10));
+		walls.append(new Rectangle(615,90,10,70));
+		walls.append(new Rectangle(415,90,10,100));
+		walls.append(new Rectangle(315,300,100,10));
+		walls.append(new Rectangle(310,350,10,70));
+		walls.append(new Rectangle(450,330,10,100));
 		//destroyables:
 		barrels = new Destroyables();
-		barrels.append(new destroyable(60,120));
+		barrels.append(new destroyable(630,150));
+		barrels.append(new destroyable(300,250));
+		barrels.append(new destroyable(250,250));
+		barrels.append(new destroyable(250,200));
+		barrels.append(new destroyable(250,150));
+		barrels.append(new destroyable(350,150));
+		barrels.append(new destroyable(350,250));
+		barrels.append(new destroyable(360,100));
+		barrels.append(new destroyable(500,225));
+		barrels.append(new destroyable(360,410));
+		barrels.append(new destroyable(470,410));
+		barrels.append(new destroyable(100,350));
+		barrels.append(new destroyable(300,60));
+		barrels.append(new destroyable(300,150));
+		barrels.append(new destroyable(400,250));
+		barrels.append(new destroyable(450,250));
+		barrels.append(new destroyable(450,200));
+		barrels.append(new destroyable(450,100));
+		barrels.append(new destroyable(530,350));
+		barrels.append(new destroyable(530,400));
+		barrels.append(new destroyable(470,360));
+		barrels.append(new destroyable(170,410));
+		barrels.append(new destroyable(370,360));
+		barrels.append(new destroyable(170,210));
+		barrels.append(new destroyable(610,240));
+		barrels.append(new destroyable(660,240));
+		barrels.append(new destroyable(660,290));
 		
 		setBackground(Color.black);
 		keys = new boolean[12];
@@ -161,7 +200,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 			graphToBack.setColor(Color.BLACK);
 			graphToBack.fillRect(0,0,800,600);
 			graphToBack.setColor(Color.BLUE);
-			graphToBack.drawString("BombSeeker ", 25, 25);
+			graphToBack.drawString("BombBrawl ", 25, 25);
 			//graphToBack.drawString("Score: " + score, 25, 100);
 			//graphToBack.drawString("Press r to restart", 25, 150);
 			graphToBack.setColor(playerOne.getColor());
@@ -615,15 +654,15 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				{
 					bombOne = new Bomb(((int)playerOne.getX()-10), ((int)playerOne.getY()));
 				}
-				if(lastKeyOne == 1)
+				else if(lastKeyOne == 1)
 				{
 					bombOne = new Bomb(((int)playerOne.getX()+10), ((int)playerOne.getY()));
 				}
-				if(lastKeyOne == 2)
+				else if(lastKeyOne == 2)
 				{
 					bombOne = new Bomb(((int)playerOne.getX()), ((int)playerOne.getY()-10));
 				}
-				if(lastKeyOne == 3)
+				else if(lastKeyOne == 3)
 				{
 					bombOne = new Bomb(((int)playerOne.getX()), ((int)playerOne.getY()+10));
 				}
@@ -771,22 +810,18 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 			if(livesLeftOne == 0)
 			{
 				graphToBack.setColor(playerTwo.getColor());
-				graphToBack.drawString("TWO WINS", 380, 300);
+				graphToBack.drawString("TWO WINS", 380, 25);
 				wl = true;
 			}
 			if(livesLeftTwo == 0)
 			{
 				graphToBack.setColor(playerOne.getColor());
-				graphToBack.drawString("ONE WINS", 380, 300);
+				graphToBack.drawString("ONE WINS", 380, 25);
 				wl = true;
 			}
 			twoDGraph.drawImage(back, null, 0, 0);
 		}
-		else
-		{
-			replay = false;
-			
-		}
+		
 	}
 
 
@@ -1065,19 +1100,12 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
    		while(replay)
    		{
    		   Thread.currentThread().sleep(5);
-   		   running = true;
             repaint();
          }
-   		running = false;
       }catch(Exception e)
       {
       }
   	}
-   public void exit()
-   {
-	   System.exit(0);
-   }
-   
    
 }
 
