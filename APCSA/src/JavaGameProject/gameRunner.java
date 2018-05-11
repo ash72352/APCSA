@@ -1,12 +1,6 @@
 package JavaGameProject;
 
 
-//© A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 

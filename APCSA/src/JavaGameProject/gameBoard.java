@@ -41,8 +41,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 	private Walls walls;
 	private ArrayList borders;
 	private ArrayList bordersR;
-	//private Enemy enemyOne;
-	//private Enemy enemyTwo;
+
 	private int lastKeyOne = -1;
 	private int lastKeyTwo = -1;
 	private String bombDirectionOne  = "DOWN";
@@ -50,7 +49,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 	private int score;
 	private BufferedImage restart;
 	private boolean first = true;
-	//private ShieldPowerup pu = null;
+
 	private Rectangle puR = null;
 	private boolean shieldOn = false;
 	
@@ -76,7 +75,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 	@SuppressWarnings("unchecked")
 	public gameBoard()
 	{
-		JOptionPane.showMessageDialog(getParent(), "BOMBBRAWL: BY DAVID DATTA\nPLAYERONE: Use Arrows, Shift to place Bomb\nPLAYERTWO: Use WASD and E to Place Bomb\nFirst to run out of lives wins!");
+		JOptionPane.showMessageDialog(getParent(), "BOMBBRAWL: BY DAVID DATTA\nPress R to restart\nPLAYERONE: Use Arrows, Shift to place Bomb\nPLAYERTWO: Use WASD and E to Place Bomb\nLast to run out of lives wins!");
 		//borders:
 		walls = new Walls();
 		walls.append(new Rectangle(50,50,10,420));
@@ -146,8 +145,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		playerTwo = new Player(685,435,1);
 		playerTwoR = new Rectangle(playerTwo.getX()- 10,playerTwo.getY()-10,30,30);
 		playerTwo.setColor(Color.BLUE);
-		//enemyOne = new Enemy(0, 0, 1);
-		//instantiate other stuff
+
 		remainingOne = 100;
 		remainingTwo = 100;
 		final Bomb bomb = new Bomb(1000,1000);
@@ -177,12 +175,10 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 
 	public void paint( Graphics window )
 	{
-		
-			//set up the double buffering to make the game animation nice and smooth
+
 			Graphics2D twoDGraph = (Graphics2D)window;
 	
-			//take a snap shop of the current screen and same it as an image
-			//that is the exact same width and height as the current screen
+
 			if(back==null)
 			   back = (BufferedImage)(createImage(getWidth(),getHeight()));
 			if(first = true)
@@ -190,19 +186,16 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				restart = back;
 				first = false;
 			}
-	
-			//create a graphics reference to the back ground image
-			//we will draw all changes on the background image
+
 			Graphics graphToBack = back.createGraphics();
-			//System.out.println("X: " + playerOne.getX() + "\nY: " + playerOne.getY());
+
 		if(!wl)
 		{
 			graphToBack.setColor(Color.BLACK);
 			graphToBack.fillRect(0,0,800,600);
 			graphToBack.setColor(Color.BLUE);
 			graphToBack.drawString("BombBrawl ", 25, 25);
-			//graphToBack.drawString("Score: " + score, 25, 100);
-			//graphToBack.drawString("Press r to restart", 25, 150);
+
 			graphToBack.setColor(playerOne.getColor());
 			playerOne.draw(graphToBack);
 			for(Rectangle r : livesOne)
@@ -236,7 +229,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 			
 			
 			barrels.draw(graphToBack);
-			//graphToBack.fillRect((int)playerOneR.getX(),(int)playerOneR.getY(),30,30);
+
 			if(bombOne != null && bombOneR.getMinY() <= 0)
 			{
 				bombOne = null;
@@ -294,7 +287,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 						livesLeftOne--;
 					}
 					retryOne(graphToBack);
-					//playerOne = null;
+
 				}
 				explodeOne = bombOneR.intersects(playerTwoR);
 				if(explodeOne)
@@ -305,7 +298,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 						livesLeftTwo--;
 					}
 					retryTwo(graphToBack);
-					//playerOne = null;
+
 				}
 				for(int i = 0; i < barrels.length(); i++)
 				{
@@ -368,7 +361,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 						livesLeftTwo--;
 					}
 					retryTwo(graphToBack);
-					//playerOne = null;
+
 				}
 				explodeTwo = bombTwo.boom(bombTwoR, playerOneR);
 				if(explodeTwo == 1)
@@ -381,7 +374,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 					
 					
 					retryOne(graphToBack);
-					//playerOne = null;
+
 				}
 				for(int i = 0; i < barrels.length(); i++)
 				{
@@ -404,7 +397,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 						livesLeftTwo--;
 					}
 					retryTwo(graphToBack);
-					//playerOne = null;
+
 				}
 				explodeTwo = bombTwo.boom(bombTwoR, playerOneR);
 				if(explodeTwo == 1)
@@ -417,7 +410,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 					
 					
 					retryOne(graphToBack);
-					//playerOne = null;
+
 				}
 				for(int i = 0; i < barrels.length(); i++)
 				{
@@ -456,14 +449,14 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				{
 					playerOneR.setLocation((int)playerOneR.getX()+ 1,(int)playerOneR.getY());
 					playerOne.setPos((int)playerOneR.getX()+10, (int)playerOneR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[0] = false;
 				}
 				if(lastKeyOne == 1)
 				{
 					playerOneR.setLocation((int)playerOneR.getX()- 1,(int)playerOneR.getY());
 					playerOne.setPos((int)playerOneR.getX()+10, (int)playerOneR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[1] = false;
 				}
 				if(lastKeyOne == 2)
@@ -477,7 +470,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				{
 					playerOneR.setLocation((int)playerOneR.getX(),(int)playerOneR.getY()-1);
 					playerOne.setPos((int)playerOneR.getX()+10, (int)playerOneR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[3] = false;
 				}
 			}
@@ -487,28 +480,28 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				{
 					playerOneR.setLocation((int)playerOneR.getX()+ 1,(int)playerOneR.getY());
 					playerOne.setPos((int)playerOneR.getX()+10, (int)playerOneR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[0] = false;
 				}
 				if(lastKeyOne == 1)
 				{
 					playerOneR.setLocation((int)playerOneR.getX()- 1,(int)playerOneR.getY());
 					playerOne.setPos((int)playerOneR.getX()+10, (int)playerOneR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[1] = false;
 				}
 				if(lastKeyOne == 2)
 				{
 					playerOneR.setLocation((int)playerOneR.getX(),(int)playerOneR.getY()+1);
 					playerOne.setPos((int)playerOneR.getX()+10, (int)playerOneR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[2] = false;
 				}
 				if(lastKeyOne == 3)
 				{
 					playerOneR.setLocation((int)playerOneR.getX(),(int)playerOneR.getY()-1);
 					playerOne.setPos((int)playerOneR.getX()+10, (int)playerOneR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[3] = false;
 				}
 			}
@@ -518,28 +511,28 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX()+ 1,(int)playerTwoR.getY());
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[6] = false;
 				}
 				if(lastKeyTwo == 7)
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX()- 1,(int)playerTwoR.getY());
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[7] = false;
 				}
 				if(lastKeyTwo == 8)
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX(),(int)playerTwoR.getY()+1);
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[8] = false;
 				}
 				if(lastKeyTwo == 9)
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX(),(int)playerTwoR.getY()-1);
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[9] = false;
 				}
 			}
@@ -550,51 +543,35 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX()+ 1,(int)playerTwoR.getY());
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[6] = false;
 				}
 				if(lastKeyTwo == 7)
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX()- 1,(int)playerTwoR.getY());
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[7] = false;
 				}
 				if(lastKeyTwo == 8)
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX(),(int)playerTwoR.getY()+1);
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[8] = false;
 				}
 				if(lastKeyTwo == 9)
 				{
 					playerTwoR.setLocation((int)playerTwoR.getX(),(int)playerTwoR.getY()-1);
 					playerTwo.setPos((int)playerTwoR.getX()+10, (int)playerTwoR.getY()+10);
-					//lastKeyOne = -1;
+
 					keys[9] = false;
 				}
 			}
 			
 			
 			
-			Random r = new Random();
 			
-			//PowerupSpawn
-			/*
-			int pSpawn = r.nextInt(1000000);
-			pSpawn = r.nextInt(1000);
-			if(pu == null && pSpawn < 5)
-			{
-				pu = new ShieldPowerup();
-				puR = new Rectangle(pu.getX(),pu.getY(),20,20);
-				pu.draw(graphToBack);
-			}
-			if(pu!=null)
-			{
-				pu.draw(graphToBack);
-			}
-			*/
 			
 			
 			
@@ -749,43 +726,11 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 				keys[10] = false;
 				bombTwo.draw(graphToBack);
 			}
-			if(keys[11] == true)
+			/*if(keys[11] == true)
 			{
 				debug();
-			}
-			
-			
-			
-			
-	
-			//add code to move stuff
-			/*if(puR != null && playerOneR.intersects(puR))
-			{
-				playerOne.shieldMode();
-				pu = null;
-				puR = null;
-				shieldCount = 1000;
-				shieldOn = true;
-				
-			}
-			if(shieldOn)
-			{
-				shieldCount--;
-			}
-			if(shieldCount <= 0)
-			{
-				shieldOn = false;
-				playerOne.shieldModeOff();
 			}*/
-	
-	
-			//add in collision detection
-			
-			
-			
-			
-			
-			
+
 			boolean win = true;
 			boolean[] allDead = new boolean[livesOne.length];
 			for(int i = 0; i < allDead.length; i++)
@@ -951,8 +896,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		playerTwo = new Player(685,435,1);
 		playerTwoR = new Rectangle(playerTwo.getX()- 10,playerTwo.getY()-10,30,30);
 		playerTwo.setColor(Color.BLUE);
-		//enemyOne = new Enemy(0, 0, 1);
-		//instantiate other stuff
+
 		remainingOne = 100;
 		lastKeyOne =-1;
 		lastKeyTwo =-1;
@@ -983,13 +927,6 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		livesTwo[1] = new Rectangle(730, 450, 10, 10);
 		livesTwo[2] = new Rectangle(730, 430, 10, 10);
 
-		/*enemysOne = new Enemys(enemysOne.getList().size());
-		ArrayList enemysRowTwo = new ArrayList<Enemys>();
-		for(int i = 0; i<7; i++)
-		{
-			enemysRowTwo.add(new Enemy((80*i)+1, 90, 1));
-		}
-		enemysTwo = new Enemys(enemysRowTwo);*/
 		
 		
 	}
@@ -1003,8 +940,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		playerOne = new Player(75,75,1);
 		playerOneR = new Rectangle(playerOne.getX()- 10,playerOne.getY()-10,30,30);
 		playerOne.setColor(Color.RED);
-		//enemyOne = new Enemy(0, 0, 1);
-		//instantiate other stuff
+
 		remainingOne = 100;
 		lastKeyOne =-1;
 		Bomb bomb = new Bomb(1000,1000);
@@ -1013,13 +949,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		{
 			bombsLeftOne[i] = bomb;
 		}
-		/*enemysOne = new Enemys(enemysOne.getList().size());
-		ArrayList enemysRowTwo = new ArrayList<Enemys>();
-		for(int i = 0; i<7; i++)
-		{
-			enemysRowTwo.add(new Enemy((80*i)+1, 90, 1));
-		}
-		enemysTwo = new Enemys(enemysRowTwo);*/
+
 		
 		
 	}
@@ -1033,8 +963,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		playerTwo = new Player(685,435,1);
 		playerTwoR = new Rectangle(playerTwo.getX()- 10,playerTwo.getY()-10,30,30);
 		playerTwo.setColor(Color.BLUE);
-		//enemyOne = new Enemy(0, 0, 1);
-		//instantiate other stuff
+
 		remainingTwo = 100;
 		lastKeyTwo =-1;
 		Bomb bomb = new Bomb(1000,1000);
@@ -1043,13 +972,7 @@ public class gameBoard extends Canvas implements KeyListener, Runnable
 		{
 			bombsLeftTwo[i] = bomb;
 		}
-		/*enemysOne = new Enemys(enemysOne.getList().size());
-		ArrayList enemysRowTwo = new ArrayList<Enemys>();
-		for(int i = 0; i<7; i++)
-		{
-			enemysRowTwo.add(new Enemy((80*i)+1, 90, 1));
-		}
-		enemysTwo = new Enemys(enemysRowTwo);*/
+
 		
 		
 	}

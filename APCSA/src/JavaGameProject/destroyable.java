@@ -1,11 +1,6 @@
 package JavaGameProject;
 
 
-//© A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -44,10 +39,7 @@ public class destroyable implements Locatable
 		thisR.setBounds(xPos-1, yPos-1, width+3, height+3);
 		setColor(Color.ORANGE);
 	}
-	
-	
-	
- //add the other set methods
+
  
 
  

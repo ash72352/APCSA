@@ -5,7 +5,6 @@ import java.awt.Graphics;
 
 public class Platform extends Unit15.Block
 {
-
 	public Platform() 
 	{
 		super();
