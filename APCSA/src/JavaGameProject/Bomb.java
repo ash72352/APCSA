@@ -25,7 +25,7 @@ public class Bomb
 	private int boomY;
 	private int boomWidth = 30;
 	private int boomHeight = 30;
-	private int thisCount = 1000;
+	private int thisCount = 500;
 	private final Color color = Color.YELLOW;
 	
 	public Bomb(int xPos, int yPos)
@@ -91,12 +91,22 @@ public class Bomb
 	}
 	public void tick(int msecs)
 	{
-		thisCount -= msecs;
+		if(thisCount >0)
+			thisCount -= msecs;
+		else
+		{
+			thisCount = 500;
+		}
 	}
 
 	public int getCount() 
 	{
+		
 		return thisCount;
+	}
+	public void setCount(int c)
+	{
+		thisCount = c;
 	}
 	public int getBoomX() 
 	{
@@ -117,6 +127,10 @@ public class Bomb
 	{
 		return boomHeight;
 		
+	}
+	public String toString()
+	{
+		return "X: " + getX() + ", Y: " + getY() + " ";
 	}
 	
 
