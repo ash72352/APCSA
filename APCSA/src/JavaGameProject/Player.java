@@ -74,28 +74,7 @@ public class Player extends MovingThing
 		direction = dir;
 		super.move(direction);
 	}
-	public void shieldMode()
-	{
-		try
-		{
-			image = ImageIO.read(new File("src\\Unit17\\ship.jpgWithShield.jpg"));
-		}
-		catch(Exception e)
-		{
-			System.out.println("Player image fetch failed");
-		}
-	}
-	public void shieldModeOff()
-	{
-		try
-		{
-			image = ImageIO.read(new File("src\\Unit17\\ship.jpg"));
-		}
-		catch(Exception e)
-		{
-			System.out.println("Player image fetch failed");
-		}
-	}
+	
 	public String getDir()
 	{
 		return direction;
